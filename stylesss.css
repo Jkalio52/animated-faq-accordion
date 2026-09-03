@@ -1,0 +1,125 @@
+/* CSS style without Ateris Labs themes */
+:root {
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #555555;
+  --accent: #3b82f6;
+  --border-color: #e5e7eb;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 600px;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Trigger Button */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.2s ease;
+}
+
+.accordion-header:hover,
+.accordion-header:focus {
+  color: var(--accent);
+}
+
+/* Animated Icon Framework */
+.accordion-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: '';
+  position: absolute;
+  background-color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+/* Horizontal plus line */
+.accordion-icon::before {
+  top: 7px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+/* Vertical plus line */
+.accordion-icon::after {
+  left: 7px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+
+/* Morph plus into minus */
+.accordion-header[aria-expanded="true"] .accordion-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon::before {
+  transform: rotate(180deg);
+}
+
+/* Slide and Fade Container */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.accordion-body {
+  padding-bottom: 18px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
