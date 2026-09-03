@@ -1,0 +1,143 @@
+:root {
+  /* Brand Core Palette */
+  --ateris-primary: #0f172a;       /* Deep slate or dark ink for high contrast text/headers */
+  --ateris-accent: #0284c7;        /* Energetic precision blue/teal for focus states & interactive highlights */
+  --ateris-accent-rgb: 2, 132, 199;/* RGB version for custom alpha transparency manipulation */
+
+  /* Structural Surfaces & Backgrounds */
+  --ateris-surface-bg: #ffffff;    /* Card panel background */
+  --ateris-body-bg: #f8fafc;       /* Clean, soft neutral background layout */
+  --ateris-border: #e2e8f0;        /* Subtle divider line treatment */
+
+  /* Typography Layering */
+  --ateris-text-main: #0f172a;     /* Sharp contrast text color for primary headings */
+  --ateris-text-muted: #475569;    /* Readable mid-tone grey for descriptive paragraph bodies */
+  
+  /* Layout Architecture Constants */
+  --ateris-radius: 8px;            /* Clean, professional edge rounding metric */
+  --ateris-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Snappy, fluid easing curve */
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--ateris-body-bg);
+  color: var(--ateris-text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.faq-container {
+  width: 100%;
+  max-width: 600px;
+  background: var(--ateris-surface-bg);
+  padding: 30px;
+  border-radius: var(--ateris-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--ateris-border);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Trigger Button */
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 12px; /* Extra horizontal padding for the hover background container */
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ateris-text-main);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  border-radius: var(--ateris-radius);
+  transition: color var(--ateris-transition), background-color var(--ateris-transition);
+}
+
+/* Stateful Interactive Transitions */
+.accordion-header:hover {
+  color: var(--ateris-accent);
+  background-color: rgba(var(--ateris-accent-rgb), 0.04);
+}
+
+.accordion-header:focus-visible {
+  outline: 2px solid var(--ateris-accent);
+  outline-offset: -2px;
+}
+
+/* Animated Icon Framework */
+.accordion-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: '';
+  position: absolute;
+  background-color: currentColor;
+  transition: transform var(--ateris-transition), opacity var(--ateris-transition);
+}
+
+/* Horizontal plus line */
+.accordion-icon::before {
+  top: 7px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+/* Vertical plus line */
+.accordion-icon::after {
+  left: 7px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+
+/* Morph plus into minus */
+.accordion-header[aria-expanded="true"] .accordion-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon::before {
+  transform: rotate(180deg);
+}
+
+/* Slide and Fade Container */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--ateris-transition), opacity var(--ateris-transition);
+  opacity: 0;
+}
+
+.accordion-body {
+  padding: 0 12px 18px 12px; /* Added internal padding alignment to match header structure */
+  color: var(--ateris-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.625;
+  letter-spacing: -0.01em;
+}
